@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+    <meta charset="utf-8">
+    <title>Counter</title>
+  </head>
+  <body>
+    <div id="redux">hello</div>
+    <!-- <script type="text/babel" src='counter'></script> -->
+    <script type="text/babel">
+      function counter(state = 0, action) {
+        switch(action.type) {
+          case 'INCREMENT':
+            return state + 1;
+          case 'DECREMENT':
+            return state - 1;
+          default:
+            return state;
+        }
+      }
+      const store = Redux.createStore(counter);
+      const render = () => {
+        ReactDOM.render(
+          <div>
+           <button onClick={ () => store.dispatch({ type: 'INCREMENT'})}>+</button>
+             {store.getState()}
+           <button onClick={ () => store.dispatch({ type: 'DECREMENT'})}>-</button>
+          </div>,
+          document.getElementById('redux')
+        )
+      }
+      store.subscribe(render)
+      render()
+    </script>
+
+  </body>
+</html>
