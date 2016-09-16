@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import React, { Component } from 'react';
-import counterState from './state';
 
+@inject('counterStore')
 @observer
 class Counter extends Component {
 
@@ -12,18 +12,18 @@ class Counter extends Component {
   }
 
   plusOne() {
-    counterState.plusOne();
+    this.props.counterStore.plusOne();
   }
 
   minusOne() {
-    counterState.minusOne();
+    this.props.counterStore.minusOne();
   }
 
   render() {
     return (
       <div>
         <button onClick={this.minusOne}>{'-1'}</button>
-        <span>{counterState.count}</span>
+        <span>{this.props.counterStore.count}</span>
         <button onClick={this.plusOne}>{'+1'}</button>
       </div>
     )
