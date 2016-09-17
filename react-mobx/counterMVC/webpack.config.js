@@ -1,7 +1,10 @@
+const path = require('path');
+
 module.exports = {
-  entry: './gistExample.js',
+  devtool: 'source-map',
+  entry: path.join(__dirname, 'counter', 'index.js'),
   output: {
-    path: './dist',
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
