@@ -1,5 +1,5 @@
 const path = require('path');
-const webpackDashboard = require('webpack-dashboard/plugin');
+const WebpackDashboard = require('webpack-dashboard/plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -26,6 +26,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpackDashboard(),
+    new WebpackDashboard(),
   ],
 };
