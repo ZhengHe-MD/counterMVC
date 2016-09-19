@@ -1,6 +1,6 @@
+import { createStore } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -20,30 +20,13 @@ const CommentList = (state = [], action) => {
         }
       ];
     case 'DEL_COMMENT':
-      return state.filter( s => s.id !== action.id );
+      return state.filter(s => s.id !== action.id);
     default:
       return state;
   }
 }
 
 const store = createStore(CommentList);
-
-const all_tests = [
-    {
-      id: 0,
-      username: 'haha',
-      thumnail: 'eeeee',
-      comment: 'test 1',
-      type: 'ADD_COMMENT'
-    },
-    {
-      id: 1,
-      username: 'hehe',
-      thumnail: 'e e e',
-      comment: 'test 2',
-      type: 'ADD_COMMENT'
-    }
-  ];
 
 injectTapEventPlugin();
 const CommentApp = (props) => (
