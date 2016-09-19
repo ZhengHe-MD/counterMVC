@@ -2,14 +2,14 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
-import Conversation from './components/Conversation';
+import ConversationConnect from './components/conversation';
 
 
 injectTapEventPlugin();
 const CommentApp = (props) => (
   <MuiThemeProvider>
     <div>
-      <Conversation />
+      <ConversationConnect />
     </div>
   </MuiThemeProvider>
 );
