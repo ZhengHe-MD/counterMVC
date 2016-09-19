@@ -1,0 +1,45 @@
+{
+	"results": [{
+		"gender": "female",
+		"name": {
+			"title": "madame",
+			"first": "zoé",
+			"last": "garnier"
+		},
+		"location": {
+			"street": "5533 rue du dauphiné",
+			"city": "villars-le-terroir",
+			"state": "genève",
+			"postcode": 1226
+		},
+		"email": "zoé.garnier@example.com",
+		"login": {
+			"username": "orangeduck726",
+			"password": "dalshe",
+			"salt": "hZMqwoCy",
+			"md5": "9288d0a86a3c036c9b33a2f872ebce40",
+			"sha1": "3d0cba3de5902f3f58fd241297d90ad953ebd9df",
+			"sha256": "e16404f08d251ad8729843001cb5a56c1bbbbe89e82e355de0165ec9f66bae70"
+		},
+		"dob": "1959-11-15 02:17:13",
+		"registered": "2004-06-05 10:32:59",
+		"phone": "(594)-245-9481",
+		"cell": "(789)-439-6240",
+		"id": {
+			"name": "AVS",
+			"value": "756.ECOJ.EZVH.25"
+		},
+		"picture": {
+			"large": "https://randomuser.me/api/portraits/women/8.jpg",
+			"medium": "https://randomuser.me/api/portraits/med/women/8.jpg",
+			"thumbnail": "https://randomuser.me/api/portraits/thumb/women/8.jpg"
+		},
+		"nat": "CH"
+	}],
+	"info": {
+		"seed": "11296c230f05e558",
+		"results": 1,
+		"page": 1,
+		"version": "1.1"
+	}
+}

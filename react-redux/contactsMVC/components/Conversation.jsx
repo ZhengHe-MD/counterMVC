@@ -19,12 +19,10 @@ class Conversation extends React.Component {
     this.onSaveComment = this.onSaveComment.bind(this);
     this.getRandomUser = this.getRandomUser.bind(this);
     this.changeInputValue = this.changeInputValue.bind(this);
-    // this.inputValue = this.inputValue.bind(this);
+
     this.state = {
       inputValue: ''
     }
-    // this.inputValue = '';
-    // this.inputValue = this.inputValue.bind(this);
   }
 
   changeInputValue (e) {
@@ -76,7 +74,6 @@ class Conversation extends React.Component {
       .set('Accept', 'application/json')
       .then(results => {
         const data = JSON.parse(results.text).results[0];
-        // console.log(data.login.username);
         this.onSaveComment(data.login.username, data.picture.thumbnail);
       }).catch(error => console.error);
   }
@@ -86,7 +83,6 @@ class Conversation extends React.Component {
     userThumbnail,
   ) {
     console.log(this.state.inputValue);
-    // let remoteUserName = '';
 
     console.log(userName);
     console.log(userThumbnail);
@@ -97,8 +93,6 @@ class Conversation extends React.Component {
       thumbnail: userThumbnail,
       comment: this.state.inputValue
     });
-    this.setState({ inputValue: ''});
-    // this.input.value = '';
   }
 };
 
