@@ -9,7 +9,7 @@ injectTapEventPlugin();
 const CommentApp = (props) => (
   <MuiThemeProvider>
     <div>
-      <Conversation store={props.store}/>
+      <Conversation />
     </div>
   </MuiThemeProvider>
 );

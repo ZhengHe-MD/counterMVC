@@ -2,7 +2,8 @@ import { List, ListItem } from 'material-ui/List';
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import FlatButton from 'material-ui/FlatButton';
-import Avatar from 'material-ui/Avatar'
+import Avatar from 'material-ui/Avatar';
+import { connect } from 'react-redux';
 
 class CommentBox extends React.Component {
   render() {
@@ -31,7 +32,7 @@ class CommentBox extends React.Component {
           <FlatButton
             label="Delete"
             secondary={true}
-            onClick={() => this.props.store.dispatch({ type: 'DEL_COMMENT', id })}
+            onClick={() => this.props.onDeleteComment(id )}
           />
         </div>
       </ListItem>
@@ -45,4 +46,14 @@ CommentBox.props = {
   store: PropTypes.object.isRequired
 }
 
-export default CommentBox;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeleteComment: (id) => {
+      dispatch({ type: 'DEL_COMMENT', id });
+    }
+  }
+}
+
+
+
+export default connect(null, mapDispatchToProps)(CommentBox);

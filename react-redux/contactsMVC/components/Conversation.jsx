@@ -1,5 +1,6 @@
 import { Card, CardText } from 'material-ui/Card';
 import { List } from 'material-ui/List';
+import { connect } from 'react-redux';
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Subheader from 'material-ui/Subheader';
@@ -16,7 +17,6 @@ promisity(request);
 class Conversation extends Component {
   constructor() {
     super();
-    this.onSaveComment = this.onSaveComment.bind(this);
     this.onGetRandomUser = this.onGetRandomUser.bind(this);
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
 
@@ -38,7 +38,6 @@ class Conversation extends Component {
               <CommentBox
                 key={commentObject.id}
                 commentObject={commentObject}
-                store={this.props.store}
               />
             )
           )
@@ -48,13 +47,13 @@ class Conversation extends Component {
   }
 
   render() {
-    const showComments = this.props.store.getState();
+    const showComments = this.props.commentsList;
     return (
         <Card className="sidebar">
           <List>
             <Subheader>Conversation</Subheader>
             {
-              showComments.length > 0 ?
+              showComments !== 'undefined' ?
                 this.getShowComments(showComments) :
                 <div><h1>There is no comment.</h1></div>
             }
@@ -81,32 +80,40 @@ class Conversation extends Component {
       .set('Accept', 'application/json')
       .then(results => {
         const data = JSON.parse(results.text).results[0];
-        this.onSaveComment(data.login.username, data.picture.thumbnail);
+
+        const thisComment = this.state.inputValue;
+        this.setState({
+          inputValue: ""
+        })
+        this.props.onSaveComment(data.login.username, data.picture.thumbnail, thisComment);
       })
       .catch(error => console.error);
   }
 
-  onSaveComment(
-    userName,
-    userThumbnail,
-  ) {
-    const nextCommentId = uuid.v4();
-    const thisComment = this.state.inputValue;
-    this.setState({
-      inputValue: ""
-    })
-    this.props.store.dispatch({
-      type: 'ADD_COMMENT',
-      id: nextCommentId,
-      username: userName,
-      thumbnail: userThumbnail,
-      comment: thisComment
-    });
-  }
 };
 
 Conversation.propTypes = {
-  store: PropTypes.object,
+  commentsList: PropTypes.arrayOf(PropTypes.object),
+  onSaveComment: PropTypes.func.isRequired,
 };
 
-export default Conversation;
+const mapStateToProps = state => ({
+    commentsList: state,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSaveComment: (userName, userThumbnail, thisComment) => {
+      const nextCommentId = uuid.v4();
+      dispatch({
+        type: 'ADD_COMMENT',
+        id: nextCommentId,
+        username: userName,
+        thumbnail: userThumbnail,
+        comment: thisComment
+      });
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Conversation);
