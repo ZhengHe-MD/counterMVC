@@ -42,3 +42,4 @@ jspm_packages
 dist/
 build/
 .DS_Store
+bundle.js
