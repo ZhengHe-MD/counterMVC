@@ -17,7 +17,7 @@ promisity(request);
 class Conversation extends Component {
   constructor() {
     super();
-    this.onGetRandomUser = this.onGetRandomUser.bind(this);
+    this.getRandomUser = this.getRandomUser.bind(this);
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
 
     this.state = {
@@ -30,11 +30,11 @@ class Conversation extends Component {
     this.setState({ inputValue: e.target.value });
   }
 
-  getShowComments(showComments) {
+  getShowComments(currentComments) {
     return (
       <div>
         {
-          showComments.map(
+          currentComments.map(
             commentObject => (
               <CommentBoxConnect
                 key={commentObject.id}
@@ -48,14 +48,14 @@ class Conversation extends Component {
   }
 
   render() {
-    const showComments = this.props.commentsList;
+    const currentComments = this.props.commentsList;
     return (
         <Card className="sidebar">
           <List>
             <Subheader>Conversation</Subheader>
             {
-              showComments.length > 0 ?
-                this.getShowComments(showComments) :
+              currentComments.length > 0 ?
+                this.getShowComments(currentComments) :
                 null
             }
           </List>
@@ -69,7 +69,7 @@ class Conversation extends Component {
           <FlatButton
             label="Save"
             primary={true}
-            onClick={ this.onGetRandomUser }
+            onClick={ this.getRandomUser }
           />
           {
             this.state.isLoading ?
@@ -84,7 +84,7 @@ class Conversation extends Component {
     );
   }
 
-  onGetRandomUser() {
+  getRandomUser() {
     this.setState({
       isLoading: true,
     })
