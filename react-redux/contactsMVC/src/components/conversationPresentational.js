@@ -72,7 +72,7 @@ class Conversation extends Component {
             onClick={ this.onGetRandomUser }
           />
           {
-            this.state.isLoading ?
+            this.props.isLoading ?
               <RefreshIndicator
               size={40}
               left={10}
@@ -85,24 +85,12 @@ class Conversation extends Component {
   }
 
   onGetRandomUser() {
+    const thisComment = this.state.inputValue;
     this.setState({
-      isLoading: true,
-    })
-    this.render();
-    request
-      .get('https://randomuser.me/api/')
-      .set('Accept', 'application/json')
-      .then(results => {
-        const data = JSON.parse(results.text).results[0];
+      inputValue: '',
+    });
+    this.props.onSaveDispatch(thisComment);
 
-        const thisComment = this.state.inputValue;
-        this.setState({
-          inputValue: "",
-          isLoading: false,
-        })
-        this.props.onSaveComment(data.login.username, data.picture.thumbnail, thisComment);
-      })
-      .catch(error => console.error);
   }
 
 };

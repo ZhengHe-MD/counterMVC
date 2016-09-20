@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "copy:static": "cp -r static/ dist",
+    "dev": "npm run copy:static && ./node_modules/.bin/webpack-dev-server"
   },
   "author": "Li Zhenyang <lizhenyang@madadata.com>",
   "license": "MIT",
@@ -26,9 +27,11 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "superagent": "^2.2.0",
     "superagent-as-promised": "^4.0.0",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
   }
 }

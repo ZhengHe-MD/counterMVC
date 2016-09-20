@@ -2,17 +2,17 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  entry: './contacts.js',
+  entry: './src/index.js',
   output: {
-    path: __dirname,
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   resolve: {
     extensions: ["", ".js", ".jsx"]
   },
-  // devServer: {
-  //   contentBase: path.join(__dirname, 'dist')
-  // },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+  },
   module: {
     loaders: [{
         test: /\.jsx?$/,
