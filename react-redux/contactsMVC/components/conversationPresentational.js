@@ -30,7 +30,7 @@ class Conversation extends Component {
     this.setState({ inputValue: e.target.value });
   }
 
-  getShowComments(currentComments) {
+  showCurrentComments(currentComments) {
     return (
       <div>
         {
@@ -55,7 +55,7 @@ class Conversation extends Component {
             <Subheader>Conversation</Subheader>
             {
               currentComments.length > 0 ?
-                this.getShowComments(currentComments) :
+                this.showCurrentComments(currentComments) :
                 null
             }
           </List>
