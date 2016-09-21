@@ -85,14 +85,10 @@ class Conversation extends Component {
   }
 
   getRandomUser() {
-    const thisComment = this.state.inputValue;
-    this.setState({
-      inputValue: '',
-    });
-    this.props.addCommentAsync(thisComment);
-
+    const currentComment = this.state.inputValue;
+    this.setState({ inputValue: '' });
+    this.props.addCommentAsync(currentComment);
   }
-
 };
 
 Conversation.propTypes = {

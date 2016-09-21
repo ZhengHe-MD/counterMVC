@@ -20,9 +20,9 @@ export const CommentList = (state = [], action) => {
 
 export const LoadingStatus = (state = false, action) => {
   switch(action.type) {
-    case 'IS_LOADING':
+    case 'START_LOADING':
       return true;
-    case 'NO_LOADING':
+    case 'END_LOADING':
       return false;
     default:
       return state;

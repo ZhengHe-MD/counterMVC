@@ -25,14 +25,14 @@ export function delComment(id) {
 
 function Loading() {
   return {
-    type: 'IS_LOADING',
+    type: 'START_LOADING',
     loading: true,
   };
 }
 
 function noLoading() {
   return {
-    type: 'NO_LOADING',
+    type: 'END_LOADING',
     loading: false,
   }
 }
@@ -48,6 +48,6 @@ export function addCommentAsync(thisComment) {
         dispatch(addComment(data.login.username, data.picture.thumbnail, thisComment));
         dispatch(noLoading());
       })
-      .catch(error => console.error);
+      .catch(error => console.error(error));
   }
 }

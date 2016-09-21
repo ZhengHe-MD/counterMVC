@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addCommentAsync: addCommentAsync,
+  addCommentAsync,
 };
 
 const ConversationConnect = connect(mapStateToProps, mapDispatchToProps)(Conversation);
