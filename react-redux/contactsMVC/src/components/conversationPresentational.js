@@ -72,7 +72,7 @@ class Conversation extends Component {
             onClick={ this.getRandomUser }
           />
           {
-            this.state.isLoading ?
+            this.props.isLoading ?
               <RefreshIndicator
               size={40}
               left={10}
@@ -85,31 +85,16 @@ class Conversation extends Component {
   }
 
   getRandomUser() {
-    this.setState({
-      isLoading: true,
-    })
-    this.render();
-    request
-      .get('https://randomuser.me/api/')
-      .set('Accept', 'application/json')
-      .then(results => {
-        const data = JSON.parse(results.text).results[0];
-
-        const thisComment = this.state.inputValue;
-        this.setState({
-          inputValue: "",
-          isLoading: false,
-        })
-        this.props.onSaveComment(data.login.username, data.picture.thumbnail, thisComment);
-      })
-      .catch(error => console.error);
+    const currentComment = this.state.inputValue;
+    this.setState({ inputValue: '' });
+    this.props.addCommentAsync(currentComment);
   }
-
 };
 
 Conversation.propTypes = {
   commentsList: PropTypes.arrayOf(PropTypes.object),
-  onSaveComment: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  addCommentAsync: PropTypes.func.isRequired,
 };
 
 export default Conversation;

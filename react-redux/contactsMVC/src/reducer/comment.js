@@ -1,5 +1,5 @@
 
-const CommentList = (state = [], action) => {
+export const CommentList = (state = [], action) => {
   switch(action.type) {
     case 'ADD_COMMENT':
       return [
@@ -18,4 +18,13 @@ const CommentList = (state = [], action) => {
   }
 }
 
-export default CommentList;
+export const LoadingStatus = (state = false, action) => {
+  switch(action.type) {
+    case 'START_LOADING':
+      return true;
+    case 'END_LOADING':
+      return false;
+    default:
+      return state;
+  }
+}
