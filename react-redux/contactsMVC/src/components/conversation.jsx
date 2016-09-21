@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addComment, onGetRandomUserAndDispatch } from '../reducer/action';
+import { addComment, addCommentAsync } from '../reducer/action';
 import uuid from 'node-uuid';
 import Conversation from './conversationPresentational';
 
@@ -10,8 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onSaveComment: addComment,
-  onSaveDispatch: onGetRandomUserAndDispatch,
+  addCommentAsync: addCommentAsync,
 };
 
 const ConversationConnect = connect(mapStateToProps, mapDispatchToProps)(Conversation);

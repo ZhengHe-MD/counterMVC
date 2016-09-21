@@ -10,7 +10,7 @@ import CommentBox from './commentBoxPresentational';
 //   }
 // }
 
-const mapDispatchToProps = { onDeleteComment: delComment };
+const mapDispatchToProps = { delComment: delComment };
 
 const CommentBoxConnect = connect(null, mapDispatchToProps)(CommentBox);
 

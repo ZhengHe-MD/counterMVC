@@ -31,7 +31,7 @@ class CommentBox extends React.Component {
           <FlatButton
             label="Delete"
             secondary={true}
-            onClick={() => this.props.onDeleteComment(id)}
+            onClick={() => this.props.delComment(id)}
           />
         </div>
       </ListItem>
@@ -42,7 +42,7 @@ class CommentBox extends React.Component {
 
 CommentBox.props = {
   commentObject: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
+  delComment: PropTypes.func.isRequired,
 }
 
 export default CommentBox;

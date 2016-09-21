@@ -37,7 +37,7 @@ function noLoading() {
   }
 }
 
-export function onGetRandomUserAndDispatch(thisComment) {
+export function addCommentAsync(thisComment) {
   return (dispatch) => {
     dispatch(Loading())
     request
