@@ -1,0 +1,25 @@
+{
+  "name": "react-only",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run copy:static && ./node_modules/.bin/webpack-dev-server",
+    "copy:static": "mkdir -p dist && cp -r static/ dist"
+  },
+  "author": "Zheng He <zhenghe@madadata.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "6.14.0",
+    "babel-loader": "6.2.5",
+    "babel-preset-es2015": "6.14.0",
+    "babel-preset-react": "6.11.1",
+    "babel-preset-stage-0": "6.5.0",
+    "webpack": "1.13.2",
+    "webpack-dev-server": "1.16.1"
+  },
+  "dependencies": {
+    "react": "15.3.2",
+    "react-dom": "15.3.2"
+  }
+}
