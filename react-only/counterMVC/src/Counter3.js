@@ -1,7 +1,8 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
-const createStore = (reducer, initialState = {}) => {
-  let state = initialState
+const createStore = (reducer, initialState) => {
+  let state = reducer(initialState, {})
   let listeners = []
 
   const dispatch = action => {
@@ -29,34 +30,6 @@ const createStore = (reducer, initialState = {}) => {
   }
 }
 
-const connect = (Component, store) => {
-  class Connect extends React.Component {
-    constructor () {
-      super()
-      this.store = store
-      this.state = this.store.getState()
-    }
-
-    componentDidMount () {
-      this.store.subscribe(this.handleChange)
-    }
-
-    handleChange = () => {
-      this.setState(this.store.getState())
-    }
-
-    render () {
-      return (
-        <Component
-          dispatch={this.store.dispatch}
-          value={this.state.value}
-        />
-      )
-    }
-  }
-  return Connect
-}
-
 const counter = (state = { value: 0 }, action) => {
   switch (action.type) {
     case 'INCREMENT':
@@ -70,24 +43,24 @@ const counter = (state = { value: 0 }, action) => {
 
 const store = createStore(counter, { value: 0 })
 
-class Counter extends React.Component {
-  plusOne = () => {
-    this.props.dispatch({ type: 'INCREMENT' })
-  }
-
-  minusOne = () => {
-    this.props.dispatch({ type: 'DECREMENT' })
-  }
-
-  render () {
-    return (
-      <div>
-        <button onClick={this.minusOne}>-1</button>
-        <span>{this.props.value}</span>
-        <button onClick={this.plusOne}>+1</button>
-      </div>
-    )
-  }
+const render = () => {
+  ReactDOM.render(
+    <div>
+      <button
+        onClick={() => store.dispatch({type: 'INCREMENT'})}
+      >
+        +
+      </button>
+      {store.getState().value}
+      <button
+        onClick={() => store.dispatch({type: 'DECREMENT'})}
+      >
+        -
+      </button>
+    </div>,
+    document.getElementById('app')
+  )
 }
 
-export default connect(Counter, store)
+store.subscribe(render)
+render()
