@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Counter from './Counter2'
+import Counter from './Counter3'
 
 ReactDOM.render(
   <Counter />,
